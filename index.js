@@ -42,8 +42,8 @@ class CimisGrid {
       proj_cimis, 
       proj_gmaps, 
       [
-        xllcorner + (col*cellsize), 
-        yllcorner + ((nrows - row)*cellsize)
+        this.xllcorner + (col* this.cellsize), 
+        this.yllcorner + ((this.nrows - row)*this.cellsize)
       ]
     );
 
@@ -51,8 +51,8 @@ class CimisGrid {
       proj_cimis, 
       proj_gmaps, 
       [
-        xllcorner + ((col+1) * cellsize), 
-        yllcorner + ((nrows -(row+1)) * cellsize)
+        this.xllcorner + ((col+1) * this.cellsize), 
+        this.yllcorner + ((this.nrows -(row+1)) * this.cellsize)
       ]
     );
 
@@ -70,17 +70,17 @@ class CimisGrid {
     // Assuming this is the input to the grid....
     // Cols are X. Rows are Y and counted from the top down
     result = {
-      row : nrows - Math.floor((result[1] - yllcorner) / cellsize),
-      col : Math.floor((result[0] - xllcorner) / cellsize),
+      row : this.nrows - Math.floor((result[1] - this.yllcorner) / this.cellsize),
+      col : Math.floor((result[0] - this.xllcorner) / this.cellsize),
     };
   
-    var y = yllcorner + ((nrows-result.row) * cellsize);
-    var x = xllcorner + (result.col * cellsize) ;
+    var y = this.yllcorner + ((this.nrows-result.row) * this.cellsize);
+    var x = this.xllcorner + (result.col * this.cellsize) ;
   
     result.topRight = proj4(
       proj_cimis, 
       proj_gmaps,
-      [x+cellsize, y+cellsize]
+      [x+this.cellsize, y+this.cellsize]
     );
 
     result.bottomLeft = proj4(
